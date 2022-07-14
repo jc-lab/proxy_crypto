@@ -1,0 +1,4 @@
+github.com/jc-lab/miracl_wrapper v0.0.1 h1:fi/KGW370PNkss5m3IgnIGqk1Cv51fEFWiRYku/GuAc=
+github.com/jc-lab/miracl_wrapper v0.0.1/go.mod h1:mw+ePA/EhmCKF4GKQCAQLKlCsvWVmFp6TSHtamQ581w=
+go.bryk.io/miracl v0.4.2 h1:58lGheYty6RMisK3R0DGwrXqCCGmftJgDmsmXvbVJag=
+go.bryk.io/miracl v0.4.2/go.mod h1:AdsKWBu3X75H4KRElYk5QNoZ8WX+IsylqsUq3tS7kKM=
