@@ -41,6 +41,14 @@ func (e *CurveEngineImpl) GetG2S() int {
 	return e.G2S
 }
 
+func (e *CurveEngineImpl) GetSecretKeySize() int {
+	return e.BGS
+}
+
+func (e *CurveEngineImpl) GetPublicKeySize() int {
+	return e.G2S
+}
+
 func (e *CurveEngineImpl) KeyPairGenerateIKM(IKM []byte) (*KeyPair, error) {
 	kp := &KeyPair{
 		S: make([]byte, e.BGS),

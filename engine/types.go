@@ -12,6 +12,8 @@ type CurveEngine interface {
 	GetBFS() int
 	GetG1S() int
 	GetG2S() int
+	GetSecretKeySize() int
+	GetPublicKeySize() int
 	KeyPairGenerateIKM(IKM []byte) (*KeyPair, error)
 	KeyPairGenerate(rng *core.RAND) (*KeyPair, error)
 	GeneratePublicKey(S []byte) ([]byte, error)
