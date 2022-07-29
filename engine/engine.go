@@ -87,3 +87,12 @@ func (e *CurveEngineImpl) Sign(M []byte, S []byte) ([]byte, error) {
 func (e *CurveEngineImpl) Verify(SIG []byte, M []byte, W []byte) int {
 	return e.reflect.CoreVerify(SIG, M, W)
 }
+
+func (e *CurveEngineImpl) GeneratePublicKey(S []byte) ([]byte, error) {
+	s := e.reflect.FromBytes(S)
+	G := e.reflect.ECP8Generator()
+	G = e.reflect.G2mul(G, s)
+	W := make([]byte, e.G2S)
+	G.ToBytes(W, true)
+	return W, nil
+}

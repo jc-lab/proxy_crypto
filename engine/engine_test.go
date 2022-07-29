@@ -1,6 +1,7 @@
 package engine_test
 
 import (
+	"bytes"
 	"github.com/jc-lab/miracl_wrapper"
 	"github.com/jc-lab/proxy_crypto/engine"
 	"go.bryk.io/miracl/core"
@@ -46,5 +47,25 @@ func TestCurveEngineImpl_KeyPairGenerate(t *testing.T) {
 
 	if len(kp.W) <= 0 {
 		t.Error("len(W) is empty")
+	}
+}
+
+func TestCurveEngineImpl_GeneratePublicKey(t *testing.T) {
+	e := NewCurveEngineBLS48581()
+	rng := core.NewRAND()
+	kp, err := e.KeyPairGenerate(rng)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	W, err := e.GeneratePublicKey(kp.S)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	if !bytes.Equal(kp.W, W) {
+		t.Error("bytes.Equal(kp.W, W) is different")
 	}
 }

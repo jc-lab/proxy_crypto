@@ -14,6 +14,7 @@ type CurveEngine interface {
 	GetG2S() int
 	KeyPairGenerateIKM(IKM []byte) (*KeyPair, error)
 	KeyPairGenerate(rng *core.RAND) (*KeyPair, error)
+	GeneratePublicKey(S []byte) ([]byte, error)
 
 	Sign(M []byte, S []byte) ([]byte, error)
 	Verify(SIG []byte, M []byte, W []byte) int

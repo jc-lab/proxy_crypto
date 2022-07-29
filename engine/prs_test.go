@@ -1,6 +1,8 @@
 package engine_test
 
 import (
+	"bytes"
+	"encoding/hex"
 	"go.bryk.io/miracl/core"
 	"testing"
 )
@@ -11,6 +13,9 @@ func TestCurveEngineImpl_Prs(t *testing.T) {
 	e := NewCurveEngineBLS48581()
 	aliceKey, _ := e.KeyPairGenerate(rng)
 	bobKey, _ := e.KeyPairGenerate(rng)
+
+	println(hex.EncodeToString(bobKey.S))
+	println(hex.EncodeToString(bobKey.W))
 
 	designatedKey, _ := e.PrsDesignatedKey(aliceKey.S, bobKey.W)
 	resignKey, _ := e.PrsResigningKey(bobKey.S, aliceKey.W)
@@ -25,4 +30,13 @@ func TestCurveEngineImpl_Prs(t *testing.T) {
 	if r != 0 {
 		t.Errorf("signature verify failed: %d", r)
 	}
+
+	sigAlice2, _ := e.Sign(msg, designatedKey)
+	println("SAME = ", bytes.Compare(sigAlice, sigAlice2))
+
+	//r2 := e.Verify(sigAlice, msg, bobKey.W)
+	//
+	//if r2 != 0 {
+	//	t.Errorf("signature verify failed: %d", r)
+	//}
 }
